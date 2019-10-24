@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/1.css"/>
+		<script src="js/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="topbar">
+			<div class="top">
+				<div class="wrap">
+					<h1 class="logo">
+						<a href="#">网易云音乐</a>
+					</h1>
+					<ul class="nav-left">
+						<li><a href="#">发现好音乐</a></li>
+						<li><a href="#">我的音乐</a></li>
+						<li><a href="#">朋友</a></li>
+						<li><a href="#">商城</a></li>
+						<li><a href="#">音乐人</a></li>
+						<li><a href="#">下载客户端</a></li>
+					</ul>
+					
+					
+					<div class="tophead">
+						<a href="#" class="link">登录</a>
+					</div>
+					<a href="#" class="topvd">创作者中心</a>
+					
+					
+					
+					<div class="srch">
+						<div class="srchbg" id="search">
+							<input type="search" class="txt" placeholder="音乐/视频/电台/用户" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div id="nav2" class="subnav">
+				<div class="wrap">
+					<ul class="nav">
+						<li><a href="#">推荐</a></li>
+						<li><a href="#">排行榜</a></li>
+						<li><a href="#">歌单</a></li>
+						<li><a href="#">主播电台</a></li>
+						<li><a href="#">歌手</a></li>
+						<li><a href="#">新碟上架</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bd4">
+			<div class="mn4">
+				<div class="wrap6">
+					<div class="lycifo">
+						<div class="cvrwrap">
+							<div class="u-cover cover-6 f-fl">
+								<img src="img/109951163314294843.jpg"/>
+								<span class="msk">
+									
+								</span>
+							</div>
+						</div>
+						<div class="cnt">
+							<div class="tit"></div>
+							<p class="fc4">歌手：<span title="杨宗纬"><a href="#">杨宗纬</a></span></p>
+							<p class="fc4">所属专辑：<a href="#">初·爱</a></p>
+							
+							<div class="info">
+								<button title="播放" class="play">播放</button>
+								<button class="add" title="添加到播放列表">+</button>
+								<button title="收藏">收藏</button>
+								<button title="分享">分享</button>
+								<button title="下载">下载</button>
+								<button title="评论">(131597)</button>
+							</div>
+							<div class="musicLrc">
+								
+									<ul class="musicWord">
+									</ul>
+								
+							</div>
+							<div class="cr1">
+								<a href="#" class="expand" >展开</a>
+							</div>
+							<div class="content">
+							    <div class="control">
+							        <img src="img/pre-active.png">
+							        <img class="play" src="img/play-active.png">
+							        <img src="img/next-active.png">
+							    </div>
+							    <div>
+							        <audio id="music" class="music">
+							            <source src="MP3/nothing.mp3">
+							        </audio>
+							    </div>
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<script>
+	/*
+	 currentTime：音频播放的当前时间，以秒为单位
+	 duration：音频的总播放时间，以秒为单位
+	 ended：音频是否播放完毕
+	 timeupdate()事件，音频播放时播放时间发生改变时触发的时间
+	 * */
+	$(function(){
+		var audio = document.getElementById('music');
+		//点击播放：开始播放歌曲，切换播放图片
+		$('.play').click(function(){
+			//当点击时播放或者暂停歌曲
+			//aud.paused表示歌曲的状态，等于true表示歌曲暂停，否则表示歌曲在播放
+			if(audio.paused){
+				//让歌曲播放
+				audio.play();
+				//切换播放图片
+				$(".play").attr("src","img/pause-active.png");
+				//当歌曲播放的时候，获取到该歌曲的总时间
+				$(".totalTime").html(audio.duration);
+			}else{
+				audio.pause();
+				//点击暂停切换图片
+				$(".play").attr("src","img/play-active.png");
+			}
+		})
+		/*歌曲的歌词解析*/
+		//先创建一个歌词数组
+		var wordArray = new Array();
+		//ajax是jquery中，异步访问某个地址的接口，url是指ajax需要去访问的地址，async是异步的意思，false就是不做异步，做同步访问
+		var musicWord = $.ajax({url:"qishidoumeiyou.txt",async:false});
+		var myWord = musicWord.responseText;//通过异步获取到指定路径下的文件，然后将该文件信息获取到一个对象中去
+		//把时间和歌词进行分离,根据换行符将这个各种字符串进行切分，切分得到一个歌词数组，\n就是换行符的意思
+		var myWordArray = myWord.split('\n');
+		//再将歌词数组重新组装成一个json格式的数组
+		for(var i =0;i<myWordArray.length;i++){
+			//根据[]，使用字符串的subString函数，将每一行的歌词和时间进行切分，分别获取到时间和歌词对象，并把这两个对象重新组装成一个json对象
+			var time = myWordArray[i].substring(myWordArray[i].indexOf('[')+1,myWordArray[i].indexOf("]"));
+			var word = myWordArray[i].substring(myWordArray[i].indexOf(']')+1,myWordArray[i].length);
+			var every = {"t":time,"c":word};
+			//将json对象放入到歌词array数组中
+			wordArray.push(every);
+		}
+		//歌词展示
+		for(var i=0;i<wordArray.length;i++){
+		//循环歌词数组，将每一个歌词通过apped（）函数放入到ul里面去
+			$(".musicWord").append("<li>"+wordArray[i].c+"</li><br>");
+		}
+		
+		var lin_number = 0; 
+		var defalut_lin = 5;
+		
+		$('.music').bind("timeupdate",function(){
+			var musicTime = audio.currentTime;
+			var lrcTime = tranTime(wordArray[lin_number].t);
+			if (lrcTime<musicTime) {
+				lin_number++;
+				syncTime();
+				
+				
+			}
+		})
+		
+		function syncTime(){
+			$('.musicWord li').removeClass('height');
+			var allLi = $('.musicWord li');
+			var currentLi = $(allLi[lin_number-1]);
+			currentLi.addClass("height");
+			if (lin_number>defalut_lin) {
+				$(".musicWord")[0].style.transform = "translateY("+(lin_number-defalut_lin)*-40+"px)";
+			}
+		}
+		
+		function tranTime (time){
+			
+			var timeArray = new Array();
+			var transTime = 0;
+			if (time) {
+				timeArray = time.split(':');
+				transTime = timeArray[0]*60+parseFloat(timeArray[1]);
+				return transTime;
+			}else{
+				return 0;
+			}
+			
+		}
+		var flag = 0; //0展开 1收起
+		$('.expand').click(function(){
+			if (flag == 0 ) {
+				$(".musicLrc")[0].style.height = "auto";
+				$(".expand")[0].innerText = "收起";
+				flag = 1;
+				
+			}else{
+				$(".musicLrc")[0].style.height = "400px";
+				$(".expand")[0].innerText = "展开";
+				flag = 0;
+			}
+			
+		})
+	})
+	
+	
+		
+		
+	</script>
+	
+			
+			
+	</body>
+</html>
