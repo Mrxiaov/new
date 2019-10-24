@@ -1,0 +1,51 @@
+.box{
+	width: 60%;
+    background-color:white;
+    margin-left: 20%;
+	margin-top: 30px;
+	float: left;
+}
+.list{
+	height: 500px;
+}
+.list .list1{
+	border-bottom: 1px solid #e4e6eb; 
+}
+.list .list1{
+	height: 70px;
+}
+.list :hover{
+	background-color: #f7f9fc;
+}
+.list .list1 .postid{
+	float: left;
+	font-size: 14px;
+
+}
+.list .list1 .username{
+	float:right;
+	font-size:16px;
+}
+.list .list1 .theme{
+	font-size:18px;
+	margin-top: 10px;
+}
+.list .list1 .content{
+	font-size: 16px;
+	margin-top:5px; 
+	overflow:hidden;
+	text-overflow:llipsis;
+}
+.list .list1 .time{
+	margin-left:10%;
+	float:right;
+}
+.list .list1 .content,.theme{
+	margin-left: 10%;
+}
+.list .list1 .username,.time{
+	margin-right: 3%;
+}
+.list .list1 .delete{
+    float: right;
+}

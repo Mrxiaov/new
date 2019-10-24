@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册</title>
+<link href="register.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1 align="center">创建账户</h1>
+<div class="box" align="center">
+	<form  class="register" method="post" action="register_ok.php">
+			<p>
+					<label >用户名：</label>
+					<input type="text" name="username" placeholder="昵称" />
+					&nbsp;
+					
+			</p>
+			<p>
+				<label>真实姓名:</label>
+				<input type="text" placeholder="真实姓名"name="name">
+			<p>
+					<label>密码：</label>
+					<input type="password" placeholder="密码" name="password">
+				</p>
+			<p>
+				<label >再次输入:</label>
+				<input type="password" name="password1" placeholder="请再次输入密码">
+			</p>
+			<p>
+				<label >性别：</label>
+				<input type="radio" name="sex" value="男">男&nbsp;<br>
+				<input type="radio" name="sex" value="女">女&nbsp;
+			</p>
+			<p>
+				<label >生日：</label>
+				<input type="date" name="birthday" >
+			</p>
+			<p>
+				<label>电话号码:</label>
+				<input type="text" name="tel" placeholder="输入电话号码">
+			</p>
+			<p>
+				<label >QQ:</label>
+				<input type="text"name ="QQ" placeholder="QQ号码">
+			</p>
+			<p>
+				<label>电子邮箱:</label>
+				<input type="email" name="email" placeholder="E-mail">
+			</p>
+			<p>
+				<label >位置:</label>
+				<input type="text" name="address" placeholder="家庭住址">
+			</p>
+			<br>
+			<br>
+			<p>
+			<input type="submit" name="submit" value="加入我们" class="submit">
+			
+			</p>
+			<p>
+				<a href="../login/login.html">登录</a>
+			</p>
+	</form>
+</body>
+</html>

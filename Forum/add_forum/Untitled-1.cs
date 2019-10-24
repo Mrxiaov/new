@@ -1,0 +1,1 @@
+transform.Rotate(Vector3.up，1f,Space.World);

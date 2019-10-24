@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+.box{
+    width: 40%;
+    margin-left: 23%;
+}
+p{
+    overflow: hidden;
+}
+label:not(.nlabel){
+    float: left;
+    width: 70px;
+    height: 42px;
+    text-align: right;
+    margin-right: 10px;
+    line-height: 42px;
+    color: rgb(102, 102, 102);
+    font-weight: 700;
+}
+input:not(.special){
+    float: left;
+    width: 328px;
+    height: 16px;
+    padding: 11px 10px;
+    border: 1px solid silver;
+}
+input[type="radio"]{
+    width: 20px;
+}
+input[type="file"]{
+    width: 100px;
+    height: 100px;
+}
+input[type="submit"]{
+    width: 350px;
+    height:auto;
+    margin-left: 80px;
+    color:#fff;
+    background-color: #007acc;
+    border-radius: 50px;
+}
+form.register {
+    margin-left: 150px;
+}

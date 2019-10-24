@@ -1,0 +1,36 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="login.css">
+    <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+
+<div class="login">
+    <div class="l_title">
+        <span>欢迎登录</span>
+        <div class="clear"></div>
+    </div>
+    <div class="l_user">
+        <form action="login_ok.php" method="post">
+            
+            <p id="tip_username" style="color:#F00"></p>
+            <input type="text" class="name" name="username" id="username" placeholder="请输入用户名" />
+            <p id="tip_password" style="color:#F00"></p>
+            <input type="password" class="pass" name="password" id="password" placeholder="请输入密码" />
+            <p id="tip_cozsssde" style="color:#F00"></p>
+            <input type="text" class="code" name="ver_code" id="code" placeholder="请输入验证码" maxlength="5" />
+            <span class="codeimage"><img id="captcha_img" style="width: 100px; height: 30px;" alt="验证码" src="ver_code.php">
+                <a onclick="document.getElementById('captcha_img').src='ver_code.php?r ='+Math.random()" href="javascript:void(0)">看不清？</a>
+            </span>
+            <input type="submit" value="登录" class="sub" onclick="return login()"/>
+        </form>
+        <p1 class="miss"><a href="../register/register.html">创建账号?</a></p1>
+    </div>
+ </div>
+
+
+</body>
+</html>

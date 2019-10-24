@@ -1,0 +1,120 @@
+
+*{
+	margin:0;
+	padding:0;
+	}
+	
+body{
+	background-image:url(/image/login.jpg);
+	background-repeat: no-repeat;
+	font-size:12px;font-family:"微软雅黑";
+	color:#666;}
+	/*login start*/
+.login{
+	width:350px;
+	height:450px;
+	background:#FFFFFF;
+	margin-top:120px;
+	margin-left:60%;
+	border-radius:5px;
+	padding:20px;
+	box-shadow:1px 1px 50px 5px #000;
+	}
+			
+/*l_title start*/
+.login .l_title span{
+	font-size:30px;
+	color:#333;
+	float:left;
+	}
+/*end l_title*/
+
+/*l_user star*/
+.login .l_user{
+	width:350px;
+	height:200px;
+	margin:20px auto;
+	}
+	
+.l_user .user,.l_user .admin{
+	margin:10px 10px 20px 30px;
+	}
+.l_user label span{
+	font-size:16px;
+}
+.login .l_user .name,.pass{
+	width:340px;
+	height:48px;
+	border:1px solid #d9d9d9;
+	outline:none;
+	margin-bottom:20px;
+	line-height:48px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	color:#000;
+	padding-left:10px;
+	}
+	
+.login .l_user .name:hover,.pass:hover{
+	border:1px solid #009;
+	}
+.login .code{
+	width:150px;
+	height:48px;
+	border:1px solid #d9d9d9;
+	outline:none;
+	margin-bottom:20px;
+	line-height:48px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	color:#000;
+	padding-left:10px;
+	}
+	
+.login .l_user .code:hover{
+	border:1px solid #009;
+	}
+
+
+.login .l_user .codeimage img{
+	height:25px;
+	width:100px;
+	}
+
+.login .l_user .codeimage a{
+	font-size:17px;
+	margin-left:10px;
+	}
+	
+.login .l_user .sub{
+	width:350px;
+	height:45px;
+	background-color:#000;
+	border:0;
+	color:#fff;
+	font-size:20px;
+	font-family:"微软雅黑";
+	cursor:pointer;
+	}
+.login .l_user .sub:hover{
+	background:#009;
+	}
+.login .l_user .miss{
+	float:right;
+	margin-top:23px;
+    }
+
+.login a{
+	color:#d9d9d9;
+	font-size:18px;
+	height:100px;
+	text-decoration:none;
+	text-indent:2em;
+	}
+	
+.l_user a:hover{
+	color:#F00;} 
+
+.clear{
+	clear:both;
+	}

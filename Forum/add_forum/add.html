@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>发帖</title>
+    <link rel="stylesheet" href="add.css">
+</head>
+<body>
+  <div class="add">
+      <div class="add_content">
+        <span>发布新帖</span>
+        <form action="add_ok.php" method="POST">
+          <br>
+          <input type="text" class="theme" name="theme" >
+          <br>
+          <textarea name="content" class="content" id="content" cols="50" rows="10"></textarea>
+          <br>
+          <input type="submit" class="sub" value="发布">
+        </form>
+      </div>
+  </div>
+    <div class="list" >
+      <div class="theme"></div>
+      <div class="content"></div>
+    </div>
+
+</body>
+</html>
