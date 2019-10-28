@@ -92,6 +92,12 @@
 							        <img class="play" src="img/play-active.png">
 							        <img src="img/next-active.png">
 							    </div>
+							    <div class="musicSlider">
+							    	<span class="playTime">00:00</span>
+							    	<input type="range" class="slider" min="1" max="100" value="1" />
+							    	<span class="totalTime">00:00</span>
+							    </div>
+							    
 							    <div>
 							        <audio id="music" class="music">
 							            <source src="MP3/nothing.mp3">
@@ -125,7 +131,8 @@
 				//切换播放图片
 				$(".play").attr("src","img/pause-active.png");
 				//当歌曲播放的时候，获取到该歌曲的总时间
-				$(".totalTime").html(audio.duration);
+				$(".totalTime").html(transAuidoTime(audio.duration));
+				$('.slider').attr("max" ,audio.duration);
 			}else{
 				audio.pause();
 				//点击暂停切换图片
@@ -135,6 +142,7 @@
 		/*歌曲的歌词解析*/
 		//先创建一个歌词数组
 		var wordArray = new Array();
+		
 		//ajax是jquery中，异步访问某个地址的接口，url是指ajax需要去访问的地址，async是异步的意思，false就是不做异步，做同步访问
 		var musicWord = $.ajax({url:"qishidoumeiyou.txt",async:false});
 		var myWord = musicWord.responseText;//通过异步获取到指定路径下的文件，然后将该文件信息获取到一个对象中去
@@ -161,6 +169,9 @@
 		$('.music').bind("timeupdate",function(){
 			var musicTime = audio.currentTime;
 			var lrcTime = tranTime(wordArray[lin_number].t);
+			
+			$('.playTime').html(transAuidoTime(musicTime));
+			
 			if (lrcTime<musicTime) {
 				lin_number++;
 				syncTime();
@@ -192,6 +203,29 @@
 			}
 			
 		}
+		
+		function transAuidoTime(t){
+			transTime = "00:00";
+			if (t) {
+				var min = (t/60).toString().split('.')[0];
+				if (parseInt(min)<10) {
+					min = "0"+min;
+				}
+				var second = (t%60).toString().split('.')[0];
+				if (parseInt(second)<10){
+					second = "0"+second;
+				}
+				transTime = min+":"+second;
+			}
+			return transTime;
+		}
+		$('.slider').bind("change",function(){
+			var sliderValue = $(this).val();
+			
+			audio.currentTime = sliderValue;
+		})
+		
+		
 		var flag = 0; //0展开 1收起
 		$('.expand').click(function(){
 			if (flag == 0 ) {
