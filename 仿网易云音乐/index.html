@@ -65,10 +65,10 @@
 							</div>
 						</div>
 						<div class="cnt">
-							<div class="tit"></div>
-							<p class="fc4">歌手：<span title="杨宗纬"><a href="#">杨宗纬</a></span></p>
-							<p class="fc4">所属专辑：<a href="#">初·爱</a></p>
-							
+							<div class="tit">
+								<p class="fc4">歌手：<span title="杨宗纬"><a href="#">杨宗纬</a></span></p>
+								<p class="fc4">所属专辑：<a href="#">初·爱</a></p>
+							</div>
 							<div class="info">
 								<button title="播放" class="play">播放</button>
 								<button class="add" title="添加到播放列表">+</button>
@@ -94,18 +94,15 @@
 							    </div>
 							    <div class="musicSlider">
 							    	<span class="playTime">00:00</span>
-							    	<input type="range" class="slider" min="1" max="100" value="1" />
+							    	<input type="range" class="slider" min="1" max="100" value="0" />
 							    	<span class="totalTime">00:00</span>
 							    </div>
-							    
 							    <div>
 							        <audio id="music" class="music">
-							            <source src="MP3/nothing.mp3">
+							            <source src="http://hk.softeem.top/mymusic/musics/8/1551274029473.mp3">
 							        </audio>
 							    </div>
 							</div>
-							
-							
 						</div>
 					</div>
 				</div>
@@ -133,6 +130,7 @@
 				//当歌曲播放的时候，获取到该歌曲的总时间
 				$(".totalTime").html(transAuidoTime(audio.duration));
 				$('.slider').attr("max" ,audio.duration);
+				
 			}else{
 				audio.pause();
 				//点击暂停切换图片
@@ -169,15 +167,17 @@
 		$('.music').bind("timeupdate",function(){
 			var musicTime = audio.currentTime;
 			var lrcTime = tranTime(wordArray[lin_number].t);
-			
 			$('.playTime').html(transAuidoTime(musicTime));
-			
 			if (lrcTime<musicTime) {
 				lin_number++;
 				syncTime();
-				
-				
+				$('.slider').val(musicTime);
 			}
+		})
+		
+		$('.music').bind("ended",function(){
+			$('.musicWord')[0].style.transform = "translateY(0)";
+			$(".play").attr("src","img/play-active.png");
 		})
 		
 		function syncTime(){
@@ -219,12 +219,17 @@
 			}
 			return transTime;
 		}
+		
 		$('.slider').bind("change",function(){
 			var sliderValue = $(this).val();
 			
 			audio.currentTime = sliderValue;
+			for(var i =0; i<wordArray.length;i++){
+				if (parseInt(sliderValue)>=tranTime(wordArray[i].t)) {
+					lin_number = i;
+				}
+			}
 		})
-		
 		
 		var flag = 0; //0展开 1收起
 		$('.expand').click(function(){
