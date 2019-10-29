@@ -239,6 +239,8 @@ li{
 	background-color: #a8a8a8;
 	width: 75%;
 	height: 10px;
+	outline: none;/*去掉input的蓝色边框*/
+	border-radius: 10px;
 }
 .slider::-webkit-slider-thumb{
 	-webkit-appearance: none;
