@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js "></script>  
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js "></script> 
+        <![endif]-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="reply.js"></script>
+    <link rel="stylesheet" href="css/reply.css">
+    <title></title>
+</head>
+
+<body>
+    <!-- topbar -->
+    <div class="topbar">
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">论坛首页</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">首页</a></li>
+                        <li><a href="#">学习</a></li>
+                        <li><a href="#">娱乐</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于我们 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">关于我们</a></li>
+                                <li><a href="#">加入我们</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- 登录注册区 -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#login" href=""><span
+                                    class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                        <li><a data-toggle="modal" data-target="#register" href=""><span
+                                    class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    </div>
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <div class="modal-title">
+                        <h2 class="text-center">登录</h2>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-md-12 center-block" id="loginForm" action="PHP/login_ok.php" method="POST">
+                        <!-- 账号区 -->
+                        <div class="form-group-lg" id="accountDiv">
+                            <label class="sr-only" for="inputAccount">账号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"
+                                        aria-hidden="true"></span></div>
+                                <input class="form-control" id="inputAccount" name="username" type="text"
+                                    placeholder="账号" required autofocus>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 密码区 -->
+                        <div class="form-group-lg" id="pwdDiv">
+                            <label class="sr-only" for="inputPassword">密码</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                                </div>
+                                <input class="form-control" id="inputPassword" type="password" name="password"
+                                    placeholder="密码" required autofocus>
+                                <div class="input-group-addon" id="showpwd"><span class="glyphicon glyphicon-eye-open"
+                                        id="showpwd_span"></span></div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 验证码 -->
+                        <div class="form-group-lg">
+                            <label class="sr-only" for="inputPassword">验证码</label>
+                            <div class="input-group">
+                                <input type="text" name="vercode" id="inputvercode" class="form-control" value=""
+                                    placeholder="请输入验证码" required autofocus>
+                                <div class="input-group-addon" id="vercode"><img id="captcha_img" alt="验证码"
+                                        src="PHP/ver_code.php">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="checkbox">
+                            <label> <input type="checkbox" value="remember-me">记住我</label>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框注册部分 -->
+    <div id="register" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h2 class="text-center">注册</h2>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" action="PHP/register_ok.php" method="POST">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input class="form-control" type="text" name="username" placeholder="6-15位字母或数字" required
+                                autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="">密码</label>
+                            <input class="form-control" type="password" name="password" placeholder="至少6位字母或数字" required
+                                autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="">再次输入密码</label>
+                            <input class="form-control" type="password" name="entpassword" placeholder="至少6位字母或数字"
+                                required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="">邮箱</label>
+                            <input class="form-control" type="email" name="email" placeholder="例如:123@123.com">
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 评论模态框 -->
+    <div id="comment" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h4 class="text-center">评论</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" action="PHP/reply_ok.php" method="POST">
+                        <div class="form-group">
+                            <label for="">内容</label>
+                            <textarea name="content" name="content" class="form-control" rows="5" required="required"
+                                placeholder="尽情发挥吧..."></textarea>
+                        </div>
+
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="container">
+            <div class="showcontent">
+
+                <div class="well well-lg" id="well">
+                    <div class="contheader">
+                        <span class="h3">node.js 爬虫工具</span>
+                        <div class="changes">
+                            <span>发布于 3 天前</span>
+                            <span>作者 <a href="/user/iori2882">iori2882</a></span>
+                            <span>714 次浏览</span>
+                            <span> 来自 问答</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>最近有爬虫网页的需求,node有什么好用的框架或工具么?麻烦大家推荐一下…如果有教程那最好了,以前没接触过爬虫这部分…麻烦大家了…</p>
+                </div>
+            </div>
+            <div class="list">
+                <div id="header">
+                    <span>2条回复</span>
+                    <div class="doComment"><a data-toggle="modal" data-target="#comment" href=""><span
+                                class="glyphicon glyphicon-pencil"></span>评论</a></div>
+                </div>
+                <div class="listbody">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bs-docs-footer">
+        <div class="container">
+            <ul class="bs-docs-footer-links">
+                <li><a href="https://github.com/Mrxiaov/new">GitHub 仓库</a></li>
+                <li><a href="#">实例</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+
+            <p>Designed and built with all the love in the world by <a href="https://twitter.com/mdo"
+                    target="_blank">@mdo</a> and <a href="https://twitter.com/fat" target="_blank">@fat</a>. Maintained
+                by the <a href="https://github.com/orgs/twbs/people">core team</a> with the help of <a
+                    href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
+
+            <p>本项目源码受 <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE"
+                    target="_blank">MIT</a>开源协议保护，文档受 <a rel="license"
+                    href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a> 开源协议保护。</p>
+
+        </div>
+    </footer>
+
+    <div id="totop">回到顶部</div>
+
+</body>
+
+</html>

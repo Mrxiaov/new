@@ -1,0 +1,83 @@
+body{
+    background-color: #e1e1e1;
+}
+.content{
+    height: 550px;
+    background-color: #fff;
+}
+
+li {
+    list-style: none;
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #cHeader li {
+        float: left;
+        width: 20%;
+        text-align: center;
+    }
+}
+
+/* 进入超级小屏幕时 */
+@media screen and (max-width: 767px) {
+    #cHeader li {
+        float: left;
+        width: 20%;
+        text-align: center;
+    }
+    .title{
+        font-size: 12px;
+    }
+}
+
+#cHeader {
+    margin-bottom: 0;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #ccc;
+}
+
+.cell {
+    height: 50px;
+    padding: 10px 0 10px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+.cell:hover{
+    background-color: #f5f5f5;
+}
+.cell img {
+    width: 30px;
+    height: 30px;
+}
+
+.user_avatar {
+    float: left;
+}
+
+.time {
+    padding: 10px;
+    float: right;
+    font-size: 10px;
+}
+.title {
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.title span{
+    margin-left: 10px;
+}
+.page{
+    max-width: 600px;
+    margin: 0 auto;
+}
+#page li a {
+    margin-right:10px ;
+    border-radius: 50% !important;
+}

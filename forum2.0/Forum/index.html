@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js "></script>  
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js "></script> 
+        <![endif]-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="list.js"></script>
+    <title>论坛首页</title>
+
+</head>
+
+<body>
+    <!-- 首页导航栏区 -->
+    <div class="topbar">
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">论坛首页</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">首页</a></li>
+                        <li><a href="#">学习</a></li>
+                        <li><a href="#">娱乐</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于我们 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">关于我们</a></li>
+                                <li><a href="#">加入我们</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- 登录注册区 -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#login" href=""><span
+                                    class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                        <li><a data-toggle="modal" data-target="#register" href=""><span
+                                    class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    </div>
+    <!-- 模态框登录部分 -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        欢迎登录
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-md-12 center-block" id="loginForm" action="PHP/login_ok.php" method="POST">
+                        <!-- 账号区 -->
+                        <div class="form-group-lg" id="accountDiv">
+                            <label class="sr-only" for="inputAccount">账号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"
+                                        aria-hidden="true"></span></div>
+                                <input class="form-control" id="inputAccount" name="username" type="text"
+                                    placeholder="账号" required autofocus>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 密码区 -->
+                        <div class="form-group-lg" id="pwdDiv">
+                            <label class="sr-only" for="inputPassword">密码</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                                </div>
+                                <input class="form-control" id="loginPassword" type="password" name="password"
+                                    placeholder="密码" required autofocus>
+                                <div class="input-group-addon" id="showpwd"><span class="glyphicon glyphicon-eye-open"
+                                        id="showpwd_span"></span></div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- 验证码 -->
+                        <div class="form-group-lg">
+                            <label class="sr-only" for="inputPassword">验证码</label>
+                            <div class="input-group">
+                                <input type="text" name="vercode" id="inputvercode" class="form-control" value=""
+                                    placeholder="请输入验证码" required autofocus>
+                                <div class="input-group-addon" id="vercode"><img id="captcha_img" alt="验证码"
+                                        src="PHP/ver_code.php">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="checkbox">
+                            <label> <input type="checkbox" value="remember-me">记住我</label>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 模态框注册部分 -->
+    <div id="register" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">注册</h1>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" action="PHP/register_ok.php" method="POST">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input class="form-control" type="text" name="username" placeholder="6-15位字母或数字" required
+                                autofocus>
+                        </div>
+                        <div class="form-group" id="pwdDiv">
+                            <label for="">输入密码</label>
+
+                            <input class="form-control" id="registerPassword" type="password" name="password"
+                                placeholder="密码" required autofocus>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="">再次输入密码</label>
+
+                            <input class="form-control" type="password" id="entpwd" name="entpassword"
+                                placeholder="至少6位字母或数字" required autofocus>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="">邮箱</label>
+                            <input class="form-control" type="email" name="email" placeholder="例如:123@123.com">
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="bottom" title="" id="registerSub">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 发帖模态框 -->
+    <div id="post" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">发布帖子</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="PHP/add_ok.php" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="">主题</label>
+                            <input type="texte" class="form-control" name="theme" placeholder="加个标题呦~">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">内容</label>
+                            <textarea name="content" class="form-control" rows="5" required="required"
+                                placeholder="尽情发挥吧..."></textarea>
+                        </div>
+
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 网站主体部分 用户使用区域 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="content">
+                    <!-- 内容header -->
+                    <nav class="navbar nabar-default" id="cHeader">
+                        <div class="container">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">全部</a></li>
+                                <li><a href="#">精华</a></li>
+                                <li><a href="#">问答</a></li>
+                                <li><a href="#">分享</a></li>
+                                <li><a data-toggle="modal" data-target="#post" href=""><span
+                                            class="glyphicon glyphicon-send"></span> 发帖</a></li>
+                            </ul>
+
+                        </div>
+                    </nav> <!-- end header -->
+
+                    <div class="list">
+                        <div class="cell">
+                            <a href="#" class="user_avatar"><img src="upload/227713.jpg" alt=""></a>
+                            <a href="#" class="time"><span>19分钟前</span></a>
+                            <div class="title">
+                                <span class="glyphicon glyphicon-comment"></span>
+                                <a href="#" class="title">前端面试 答不上来 但感觉都是简单的项目</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 visible-lg blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+                    <h4>About</h4>
+                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
+                        fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                </div>
+                <div class="sidebar-module">
+                    <h4>Archives</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">March 2014</a></li>
+                        <li><a href="#">February 2014</a></li>
+                        <li><a href="#">January 2014</a></li>
+                        <li><a href="#">December 2013</a></li>
+                        <li><a href="#">November 2013</a></li>
+                        <li><a href="#">October 2013</a></li>
+                        <li><a href="#">September 2013</a></li>
+                        <li><a href="#">August 2013</a></li>
+                        <li><a href="#">July 2013</a></li>
+                        <li><a href="#">June 2013</a></li>
+                        <li><a href="#">May 2013</a></li>
+                        <li><a href="#">April 2013</a></li>
+                    </ol>
+                </div>
+                <div class="sidebar-module">
+                    <h4>Elsewhere</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- 分页 -->
+    <div class="container" style="text-align: center;">
+        <div class="page">
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id="page">
+                    <li>
+                        <a onclick="getData(page-1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a onclick="getData(1)">1</a></li>
+                    <li><a onclick="getData(2)">2</a></li>
+                    <li><a onclick="getData(3)">3</a></li>
+                    <li><a onclick="getData(4)">4</a></li>
+                    <li><a onclick="getData(5)">5</a></li>
+                    <li>
+                        <a onclick="getData(page+1)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- 登录部分js -->
+    <script>
+        // 显示密码
+        var showpwd = document.querySelector('#showpwd')
+        var showpwd_span = document.querySelector('#showpwd_span')
+        var loginPassword = document.querySelector('#loginPassword')
+        var registerPassword = document.querySelector('#registerPassword')
+        var entpwd = document.querySelector('#entpwd')
+        var registerSub = document.querySelector('#registerSub')
+        var flag = false //密码是否可见
+        showpwd.addEventListener('click', function () {
+            if (flag === false) {
+                loginPassword.setAttribute('type', 'text')
+                showpwd_span.setAttribute('class', 'glyphicon glyphicon-eye-close')
+                flag = true
+            } else {
+                loginPassword.setAttribute('type', 'password')
+                showpwd_span.setAttribute('class', 'glyphicon glyphicon-eye-open')
+                flag = false
+            }
+
+        });
+
+
+        var vercode = document.querySelector('#vercode')
+        var captcha_img = document.querySelector('#captcha_img')
+        vercode.addEventListener('click', function () {
+            captcha_img.setAttribute('src', 'PHP/ver_code.php?r =', '/+', 'Math.random()')
+        })
+
+        registerSub.addEventListener('mouseover', function () {
+            
+            if (entpwd.value != registerPassword.value) {
+                console.log('!=');
+                
+                registerSub.setAttribute('title','两次输入的密码不同')
+                $('#registerSub').tooltip('show')
+            } else {
+                console.log('=');
+                
+                $('#registerSub').tooltip('destroy')
+            }
+        })
+        registerSub.addEventListener('mouseout',function(){
+            console.log(3);
+            
+            $('#registerSub').tooltip('hide')
+            registerSub.removeAttribute('title')
+        })
+
+
+
+
+    </script>
+
+</body>
+
+</html>
